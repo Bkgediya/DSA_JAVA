@@ -1,4 +1,3 @@
-
 public class SinglyLinkedList {
 
     private ListNode head;
@@ -19,6 +18,51 @@ public class SinglyLinkedList {
             itr = itr.next;
         }
         System.err.println("");
+    }
+
+    public void deleteFirst() {
+        if (head == null) {
+            return;
+        }
+        head = head.next;
+    }
+
+    // delete last node from the list
+    public void deleteLast() {
+        if (null == head) {
+            return;
+        }
+
+        if (null == head.next) {
+            head = null;
+        } else {
+            ListNode current = head;
+            while (null != current.next.next) {
+                current = current.next;
+            }
+            current.next = null;
+        }
+    }
+
+    // delete at the given index
+    public void deleteAtIndex(int index) {
+        if (null == head) {
+            return;
+        }
+
+        if (1 == index) {
+            head = head.next;
+            return;
+        }
+
+        int count = 1;
+        ListNode current = head;
+        while (count < index - 1) {
+            count++;
+            current = current.next;
+        }
+        
+        current.next = current.next.next;
     }
 
     // insert value at particular index
@@ -86,6 +130,21 @@ public class SinglyLinkedList {
 
         sll.insert(102, 2);
         sll.printData();
+        sll.deleteFirst();
+        sll.printData();
+
+        sll.deleteLast();
+        sll.printData();
+
+        sll.deleteAtIndex(5);
+        sll.printData();
+        
+        sll.deleteAtIndex(3);
+        sll.printData();
+
+        sll.deleteAtIndex(1);
+        sll.printData();
+        
 
     }
 
